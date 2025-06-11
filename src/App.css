@@ -1,0 +1,395 @@
+/* === Reset e base === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #ede7dd;
+  color: #333;
+  line-height: 1.6;
+  padding: 0;
+}
+
+/* === Header === */
+.cabecalho {
+  background-color: #F5EEE2;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 2px solid #d2c1b0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.slogan {
+  font-size: 1.4rem;
+  color: #6c5a54;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* === Boas-vindas centralizada e texto justificado === */
+.boas-vindas {
+  background-color: #fffaf7;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: justify;
+  max-width: 900px;
+}
+
+/* === Botão login no canto superior direito da tela === */
+.login-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.login-buttons .btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.login-buttons .btn img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.login-buttons .btn:hover img {
+  transform: scale(1.05);
+}
+
+/* === Seções principais === */
+.pagina-home,
+.pagina-login {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* === Desabafo e filtros === */
+.bloco-desabafo,
+.filtro-categorias,
+.timeline,
+.formulario-login {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.bloco-desabafo h2,
+.filtro-categorias h3,
+.timeline h3,
+.formulario-login h2 {
+  margin-bottom: 1rem;
+  color: #403733;
+}
+
+.desabafo-input,
+.comentario-input,
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  background-color: #fefefe;
+}
+
+.categoria-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.btn-categoria {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 16px;
+  background-color: #e2dad4;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-categoria.selecionada,
+.btn-categoria.filtro-selecionado {
+  background-color: #c4a8b9;
+  color: white;
+  font-weight: bold;
+}
+
+.btn,
+.btn-login-submit,
+.btn-comentar,
+.postar-btn,
+.enviar-btn,
+.btn-reagir {
+  background-color: #7c4d85;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover,
+.btn-login-submit:hover,
+.btn-comentar:hover,
+.postar-btn:hover,
+.enviar-btn:hover,
+.btn-reagir:hover {
+  background-color: #6a3e70;
+}
+
+/* === Timeline === */
+.desabafo {
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.desabafo::before {
+  content: url('/img/usuario.png');
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.desabafo-conteudo {
+  flex: 1;
+}
+
+.categorias {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background-color: #ddd;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+/* === Ações lado a lado === */
+.reagir-area,
+.comentar-area {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+/* === Comentários === */
+.lista-comentarios {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comentario {
+  max-width: 70%;
+  padding: 12px;
+  border-radius: 16px;
+  background-color: #f0f0f0;
+  position: relative;
+  font-size: 0.95rem;
+  color: #333;
+  text-align: left;
+}
+
+.comentario::before {
+  content: url('/img/usuario.png');
+  position: absolute;
+  left: -42px;
+  top: 4px;
+  width: 32px;
+  height: 32px;
+}
+
+.comentario.profissional {
+  margin-left: auto;
+  background-color: #e9d8f2;
+}
+
+.comentario.profissional::before {
+  content: url('/img/ouvir.png');
+  left: auto;
+  right: -42px;
+}
+
+.comentario p {
+  margin: 0;
+}
+
+.comentario small {
+  color: #777;
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* === Reações === */
+.reacoes-popup {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  top: 40px;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.btn-reacao img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s ease;
+}
+
+.btn-reacao:hover img {
+  transform: scale(1.2);
+}
+
+.reacao-aplicada {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+.reacao-aplicada img {
+  width: 20px;
+  height: 20px;
+}
+
+.desabafo.reacted {
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); background-color: #eafaf1; }
+  100% { transform: scale(1); }
+}
+
+/* === Login === */
+.tipo-switch {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.tipo-switch button {
+  padding: 6px 14px;
+  background-color: #d9d1cb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tipo-switch .ativo {
+  background-color: #7c4d85;
+  color: white;
+  font-weight: bold;
+}
+
+.alternar-modo {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.alternar-modo button {
+  background: none;
+  border: none;
+  color: #7c4d85;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* === Campo de senha === */
+.senha-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.senha-box input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.toggle-senha {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.toggle-senha:hover {
+  opacity: 1;
+}
+
+/* === Rodapé === */
+.rodape {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.rodape a {
+  color: #7c4d85;
+  text-decoration: none;
+  margin: 0 0.3rem;
+}
+
+.rodape a:hover {
+  text-decoration: underline;
+}
