@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import '../styles/styles.css';
-
+import React, { useState } from "react";
+import Header from "../components/Header";
 const categorias = [
-  'Relacionamento', 'Família', 'Emprego', 'Amizades', 'Vida Financeira',
-  'Saúde Mental', 'Luto', 'Sexualidade', 'Autoestima', 'Outros'
+  "Relacionamento",
+  "Família",
+  "Emprego",
+  "Amizades",
+  "Vida Financeira",
+  "Saúde Mental",
+  "Luto",
+  "Sexualidade",
+  "Autoestima",
+  "Outros",
 ];
 
 const reacoes = [
-  { label: 'Curtir!', img: '/img/reactions/like.png' },
-  { label: 'Força', img: '/img/reactions/força.png' },
-  { label: 'Você não está sozinho!', img: '/img/reactions/hug.png' },
-  { label: 'Isso irá passar!', img: '/img/reactions/vaipassar.png' },
-  { label: 'Já deu tudo certo!', img: '/img/reactions/certo.png' },
+  { label: "Curtir!", img: "/img/reactions/like.png" },
+  { label: "Força", img: "/img/reactions/força.png" },
+  { label: "Você não está sozinho!", img: "/img/reactions/hug.png" },
+  { label: "Isso irá passar!", img: "/img/reactions/vaipassar.png" },
+  { label: "Já deu tudo certo!", img: "/img/reactions/certo.png" },
 ];
 
 export default function Home() {
-  const [texto, setTexto] = useState('');
+  const [texto, setTexto] = useState("");
   const [selecionadas, setSelecionadas] = useState([]);
   const [filtro, setFiltro] = useState([]);
   const [desabafos, setDesabafos] = useState([]);
@@ -23,14 +30,14 @@ export default function Home() {
   const [reacoesAplicadas, setReacoesAplicadas] = useState({});
   const [comentarios, setComentarios] = useState({});
   const [mostrarComentario, setMostrarComentario] = useState(null);
-  const [comentarioTexto, setComentarioTexto] = useState('');
+  const [comentarioTexto, setComentarioTexto] = useState("");
 
-  const toggleCategoria = (cat, origem = 'post') => {
-    const lista = origem === 'post' ? selecionadas : filtro;
-    const setLista = origem === 'post' ? setSelecionadas : setFiltro;
+  const toggleCategoria = (cat, origem = "post") => {
+    const lista = origem === "post" ? selecionadas : filtro;
+    const setLista = origem === "post" ? setSelecionadas : setFiltro;
 
     if (lista.includes(cat)) {
-      setLista(lista.filter(c => c !== cat));
+      setLista(lista.filter((c) => c !== cat));
     } else {
       setLista([...lista, cat]);
     }
@@ -38,7 +45,7 @@ export default function Home() {
 
   const postar = () => {
     if (!texto.trim() || selecionadas.length === 0) {
-      alert('Digite um desabafo válido e selecione ao menos uma categoria.');
+      alert("Digite um desabafo válido e selecione ao menos uma categoria.");
       return;
     }
 
@@ -46,60 +53,73 @@ export default function Home() {
       id: Date.now(),
       texto,
       categorias: selecionadas,
-      data: new Date().toLocaleString()
+      data: new Date().toLocaleString(),
     };
 
     setDesabafos([novoDesabafo, ...desabafos]);
-    setTexto('');
+    setTexto("");
     setSelecionadas([]);
   };
 
   const aplicarReacao = (id, reacao) => {
-    setReacoesAplicadas(prev => ({
+    setReacoesAplicadas((prev) => ({
       ...prev,
-      [id]: reacao
+      [id]: reacao,
     }));
 
     setMenuReacaoAberto(null);
 
     const elemento = document.getElementById(`desabafo-${id}`);
     if (elemento) {
-      elemento.classList.add('reacted');
-      setTimeout(() => elemento.classList.remove('reacted'), 1000);
+      elemento.classList.add("reacted");
+      setTimeout(() => elemento.classList.remove("reacted"), 1000);
     }
   };
 
   const enviarComentario = (id) => {
     if (!comentarioTexto.trim()) return;
 
-    setComentarios(prev => ({
+    setComentarios((prev) => ({
       ...prev,
-      [id]: [...(prev[id] || []), {
-        texto: comentarioTexto,
-        data: new Date().toLocaleString()
-      }]
+      [id]: [
+        ...(prev[id] || []),
+        {
+          texto: comentarioTexto,
+          data: new Date().toLocaleString(),
+        },
+      ],
     }));
 
-    setComentarioTexto('');
+    setComentarioTexto("");
     setMostrarComentario(null);
   };
 
   return (
     <div className="pagina-home">
-      <header className="cabecalho">
-        <img src="/img/logo.png" alt="Entre Linhas" className="logo" />
-        <h1 className="slogan">Privacidade para falar, profissionalismo para ouvir.</h1>
-      </header>
-
+      <Header />
       <section className="boas-vindas">
-        <p>No <strong>Entre Linhas</strong>, acreditamos que todos têm algo a dizer — sentimentos, angústias e pensamentos que, muitas vezes, não encontram espaço para serem expressos no dia a dia.</p>
-        <p>Nosso objetivo é oferecer um ambiente anônimo, seguro e respeitoso, onde qualquer pessoa possa desabafar livremente e se sentir ouvida.</p>
-        <p>Criamos este espaço para acolher, não julgar. Porque ser ouvido, mesmo sem revelar quem você é, pode fazer toda a diferença.</p>
-        <p>Aqui, sua voz tem valor — mesmo em silêncio, você não está sozinho.</p>
+        <p>
+          No <strong>Entre Linhas</strong>, acreditamos que todos têm algo a
+          dizer — sentimentos, angústias e pensamentos que, muitas vezes, não
+          encontram espaço para serem expressos no dia a dia.
+        </p>
+        <p>
+          Nosso objetivo é oferecer um ambiente anônimo, seguro e respeitoso,
+          onde qualquer pessoa possa desabafar livremente e se sentir ouvida.
+        </p>
+        <p>
+          Criamos este espaço para acolher, não julgar. Porque ser ouvido, mesmo
+          sem revelar quem você é, pode fazer toda a diferença.
+        </p>
+        <p>
+          Aqui, sua voz tem valor — mesmo em silêncio, você não está sozinho.
+        </p>
       </section>
 
       <div className="login-buttons">
-        <button className="btn login-user"><img src="/img/user.png" alt="user" /></button>
+        <button className="btn login-user">
+          <img src="/img/user.png" alt="user" />
+        </button>
       </div>
 
       <section className="bloco-desabafo">
@@ -111,27 +131,33 @@ export default function Home() {
           placeholder="Digite aqui seu desabafo..."
         />
         <div className="categoria-lista">
-          {categorias.map(cat => (
+          {categorias.map((cat) => (
             <button
               key={cat}
               onClick={() => toggleCategoria(cat)}
-              className={`btn-categoria ${selecionadas.includes(cat) ? 'selecionada' : ''}`}
+              className={`btn-categoria ${
+                selecionadas.includes(cat) ? "selecionada" : ""
+              }`}
             >
               {cat}
             </button>
           ))}
         </div>
-        <button className="btn postar-btn" onClick={postar}>Postar</button>
+        <button className="btn postar-btn" onClick={postar}>
+          Postar
+        </button>
       </section>
 
       <section className="filtro-categorias">
         <h3>Filtrar por categorias</h3>
         <div className="categoria-lista">
-          {categorias.map(cat => (
+          {categorias.map((cat) => (
             <button
               key={cat}
-              onClick={() => toggleCategoria(cat, 'filtro')}
-              className={`btn-categoria ${filtro.includes(cat) ? 'filtro-selecionado' : ''}`}
+              onClick={() => toggleCategoria(cat, "filtro")}
+              className={`btn-categoria ${
+                filtro.includes(cat) ? "filtro-selecionado" : ""
+              }`}
             >
               {cat}
             </button>
@@ -145,16 +171,24 @@ export default function Home() {
           <p className="sem-desabafos">Nenhum desabafo ainda.</p>
         ) : (
           desabafos
-            .filter(d => filtro.length === 0 || d.categorias.some(c => filtro.includes(c)))
-            .map(d => (
+            .filter(
+              (d) =>
+                filtro.length === 0 ||
+                d.categorias.some((c) => filtro.includes(c))
+            )
+            .map((d) => (
               <div key={d.id} id={`desabafo-${d.id}`} className="desabafo">
-                <p>{d.texto}</p>
+                <p className="desabafo-comentario">
+                  {d.texto}
+                  <small>{d.data}</small>
+                </p>
                 <div className="categorias">
-                  {d.categorias.map(cat => (
-                    <span key={cat} className="tag">{cat}</span>
+                  {d.categorias.map((cat) => (
+                    <span key={cat} className="tag">
+                      {cat}
+                    </span>
                   ))}
                 </div>
-                <small>{d.data}</small>
 
                 <div
                   className="reagir-area"
@@ -165,7 +199,7 @@ export default function Home() {
 
                   {menuReacaoAberto === d.id && (
                     <div className="reacoes-popup">
-                      {reacoes.map(r => (
+                      {reacoes.map((r) => (
                         <button
                           key={r.label}
                           onClick={() => aplicarReacao(d.id, r)}
@@ -180,7 +214,10 @@ export default function Home() {
 
                   {reacoesAplicadas[d.id] && (
                     <div className="reacao-aplicada">
-                      <img src={reacoesAplicadas[d.id].img} alt={reacoesAplicadas[d.id].label} />
+                      <img
+                        src={reacoesAplicadas[d.id].img}
+                        alt={reacoesAplicadas[d.id].label}
+                      />
                       <span>{reacoesAplicadas[d.id].label}</span>
                     </div>
                   )}
@@ -190,7 +227,9 @@ export default function Home() {
                   <button
                     className="btn-comentar"
                     onClick={() =>
-                      setMostrarComentario(mostrarComentario === d.id ? null : d.id)
+                      setMostrarComentario(
+                        mostrarComentario === d.id ? null : d.id
+                      )
                     }
                   >
                     Comentar
@@ -204,7 +243,12 @@ export default function Home() {
                         onChange={(e) => setComentarioTexto(e.target.value)}
                         placeholder="Digite seu comentário..."
                       />
-                      <button onClick={() => enviarComentario(d.id)} className="btn enviar-btn">Enviar</button>
+                      <button
+                        onClick={() => enviarComentario(d.id)}
+                        className="btn enviar-btn"
+                      >
+                        Enviar
+                      </button>
                     </div>
                   )}
 
@@ -226,7 +270,9 @@ export default function Home() {
 
       <footer className="rodape">
         <p>&copy; 2025 Entre Linhas — Todos os direitos reservados</p>
-        <p><a href="#">Sobre</a> • <a href="#">Contato</a></p>
+        <p>
+          <a href="#">Sobre</a> • <a href="#">Contato</a>
+        </p>
       </footer>
     </div>
   );
